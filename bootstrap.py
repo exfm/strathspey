@@ -15,7 +15,7 @@ def get_instance_metadata(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('bootstrap_service_url')
+    parser.add_argument('bootstrap_url')
     args = parser.parse_args()
 
     params = urllib.urlencode({
@@ -24,7 +24,7 @@ def main():
         'instance_id': get_instance_metadata('meta-data/instance-id'),
         'user_data': get_instance_metadata('user-data')
     })
-    res = urllib2.urlopen(args.bootstrap_service_url, params)
+    res = urllib2.urlopen(args.bootstrap_url, params)
 
     print res.read()
     res.close()
